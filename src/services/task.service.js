@@ -1,21 +1,48 @@
-export const taskService = {
-  create: async function (req) {
-    return 'This action create'
-  },
+import { taskModel } from '~/models/task.model.js'
 
-  findAll: async function (req) {
-    return 'This action returns all task'
-  },
-
-  findOne: async function (req) {
-    return `This action returns a id: ${req.params.id} task`
-  },
-
-  update: async function (req) {
-    return `This action updates a id: ${req.params.id} task`
-  },
-
-  remove: async function (req) {
-    return `This action removes a id: ${req.params.id} task`
+const createNew = async (reqBody) => {
+  try {
+    const result = await taskModel.createNew(reqBody)
+    return result
+  } catch (error) {
+    throw new Error(error)
   }
+}
+
+const getList = async () => {
+  try {
+    const data = await taskModel.getList()
+    return data
+  } catch (error) {
+    throw new Error(error)
+  }
+}
+
+const update = async (taskId, reqBody) => {
+  try {
+    const updateData = {
+      ...reqBody,
+      updatedAt: Date.now()
+    }
+    const updatedProduct = await taskModel.update(taskId, updateData)
+    return updatedProduct
+  } catch (error) {
+    throw new Error(error)
+  }
+}
+
+const remove = async (taskId) => {
+  try {
+    const result = await taskModel.remove(taskId)
+    return result
+  } catch (error) {
+    throw new Error(error)
+  }
+}
+
+export const taskService = {
+  createNew,
+  getList,
+  update,
+  remove
 }

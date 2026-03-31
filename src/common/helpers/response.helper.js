@@ -1,5 +1,7 @@
-export const responseSuccess = (metaData = null, message = 'OK', code = 200) => {
-  if (typeof code !== 'number') code = 200
+import { StatusCodes } from 'http-status-codes'
+
+export const responseSuccess = (metaData = null, message = 'OK', code = StatusCodes.OK) => {
+  if (typeof code !== 'number') code = StatusCodes.OK
   return {
     status: 'Success',
     code: code,
@@ -9,8 +11,8 @@ export const responseSuccess = (metaData = null, message = 'OK', code = 200) => 
   }
 }
 
-export const responseError = (message = 'Internal Server Error', code = 500, stack = null) => {
-  if (typeof code !== 'number') code = 500
+export const responseError = (message = 'Internal Server Error', code = StatusCodes.INTERNAL_SERVER_ERROR, stack = null) => {
+  if (typeof code !== 'number') code = StatusCodes.INTERNAL_SERVER_ERROR
   return {
     status: 'Error',
     code: code,
