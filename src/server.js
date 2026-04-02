@@ -15,11 +15,11 @@ const START_SERVER = () => {
   const app = express()
   const PORT = env.APP_PORT
 
-  app.use(express.json())
-  app.use(rootRouter)
   app.use(cors({
     origin: [env.WEBSITE_DOMAIN_DEVELOPMENT, env.WEBSITE_DOMAIN_PRODUCTION]
   }))
+  app.use(express.json())
+  app.use(rootRouter)
   app.use(handleError)
 
   app.listen(PORT, () => {

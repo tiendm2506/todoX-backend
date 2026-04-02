@@ -3,7 +3,7 @@ import { StatusCodes } from 'http-status-codes'
 export const responseSuccess = (metaData = null, message = 'OK', code = StatusCodes.OK) => {
   if (typeof code !== 'number') code = StatusCodes.OK
   return {
-    status: 'Success',
+    success: true,
     code: code,
     message: message,
     metaData: metaData,
@@ -14,7 +14,7 @@ export const responseSuccess = (metaData = null, message = 'OK', code = StatusCo
 export const responseError = (message = 'Internal Server Error', code = StatusCodes.INTERNAL_SERVER_ERROR, stack = null) => {
   if (typeof code !== 'number') code = StatusCodes.INTERNAL_SERVER_ERROR
   return {
-    status: 'Error',
+    success: false,
     code: code,
     message: message,
     stack: stack
