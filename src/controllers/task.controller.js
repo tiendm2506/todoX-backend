@@ -1,6 +1,6 @@
 import { StatusCodes } from 'http-status-codes'
-import { responseSuccess } from '~/common/helpers/response.helper.js'
-import { taskService } from '~/services/task.service.js'
+import { responseSuccess } from '@/common/helpers/response.helper.js'
+import { taskService } from '@/services/task.service.js'
 import { ObjectId } from 'mongodb'
 
 const createNew = async (req, res, next) => {
@@ -15,7 +15,7 @@ const createNew = async (req, res, next) => {
 
 const getList = async (req, res, next) => {
   try {
-    const tasks = await taskService.getList()
+    const tasks = await taskService.getList(req)
     const resData = responseSuccess(tasks, 'Get all tasks successfully')
     res.status(resData.code).json(resData)
   } catch (err) {

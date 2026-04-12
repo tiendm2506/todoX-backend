@@ -5,7 +5,7 @@ import cors from 'cors'
 import { CONNECT_DB, CLOSE_DB } from './config/db.js'
 import { env } from './config/environment.js'
 import rootRouter from './routes/root.router.js'
-import { handleError } from '~/common/helpers/error.helper.js'
+import { handleError } from '@/common/helpers/error.helper.js'
 
 import dns from 'node:dns/promises'
 dns.setServers(['1.1.1.1', '8.8.8.8'])

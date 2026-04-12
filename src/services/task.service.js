@@ -1,4 +1,4 @@
-import { taskModel } from '~/models/task.model.js'
+import { taskModel } from '@/models/task.model.js'
 
 const createNew = async (reqBody) => {
   try {
@@ -9,7 +9,7 @@ const createNew = async (reqBody) => {
   }
 }
 
-const getList = async () => {
+const getList = async (req) => {
   try {
     const data = await taskModel.getList()
     return data
@@ -22,7 +22,8 @@ const update = async (taskId, reqBody) => {
   try {
     const updateData = {
       ...reqBody,
-      updatedAt: Date.now()
+      updatedAt: Date.now(),
+      completedAt: !!reqBody?.status ? Date.now() : null
     }
     const updatedProduct = await taskModel.update(taskId, updateData)
     return updatedProduct

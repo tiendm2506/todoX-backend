@@ -1,11 +1,11 @@
 import Joi from 'joi'
-import { GET_DB } from '~/config/db.js'
+import { GET_DB } from '@/config/db.js'
 import { ObjectId } from 'mongodb'
 
 const TASK_COLLECTION_NAME = 'tasks'
 
 const TASK_COLLECTION_SCHEMA = Joi.object({
-  title: Joi.string().required().min(3).max(100).trim(),
+  title: Joi.string().min(3).max(100).trim(),
   status: Joi.string().valid('Active', 'Completed').default('Active'),
   completedAt: Joi.date().timestamp('javascript').default(null),
   createdAt: Joi.date().timestamp('javascript').default(Date.now),
